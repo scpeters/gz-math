@@ -228,7 +228,25 @@ namespace ignition
       /// \brief Set this vector's components to the maximum of itself and the
       ///        passed in vector
       /// \param[in] _v the maximum clamping vector
+      /// \sa void SetMax(const Vector4<T>)
       public: void Max(const Vector4<T> &_v)
+      {
+        this->SetMax(_v);
+      }
+
+      /// \brief Set this vector's components to the minimum of itself and the
+      ///        passed in vector
+      /// \param[in] _v the minimum clamping vector
+      /// \sa void SetMin(const Vector4<T>)
+      public: void Min(const Vector4<T> &_v)
+      {
+        this->SetMin(_v);
+      }
+
+      /// \brief Set this vector's components to the maximum of itself and the
+      ///        passed in vector
+      /// \param[in] _v the maximum clamping vector
+      public: void SetMax(const Vector4<T> &_v)
       {
         this->data[0] = std::max(_v[0], this->data[0]);
         this->data[1] = std::max(_v[1], this->data[1]);
@@ -239,7 +257,7 @@ namespace ignition
       /// \brief Set this vector's components to the minimum of itself and the
       ///        passed in vector
       /// \param[in] _v the minimum clamping vector
-      public: void Min(const Vector4<T> &_v)
+      public: void SetMin(const Vector4<T> &_v)
       {
         this->data[0] = std::min(_v[0], this->data[0]);
         this->data[1] = std::min(_v[1], this->data[1]);
@@ -664,28 +682,60 @@ namespace ignition
 
       /// \brief Set the x value.
       /// \param[in] _v Value for the x component.
+      /// \sa void SetX(const T &>)
       public: inline void X(const T &_v)
+      {
+        this->SetX(_v);
+      }
+
+      /// \brief Set the y value.
+      /// \param[in] _v Value for the y component.
+      /// \sa void SetY(const T &>)
+      public: inline void Y(const T &_v)
+      {
+        this->SetY(_v);
+      }
+
+      /// \brief Set the z value.
+      /// \param[in] _v Value for the z component.
+      /// \sa void SetZ(const T &>)
+      public: inline void Z(const T &_v)
+      {
+        this->SetZ(_v);
+      }
+
+      /// \brief Set the w value.
+      /// \param[in] _v Value for the w component.
+      /// \sa void SetW(const T &>)
+      public: inline void W(const T &_v)
+      {
+        this->SetW(_v);
+      }
+
+      /// \brief Set the x value.
+      /// \param[in] _v Value for the x component.
+      public: void SetX(const T &_v)
       {
         this->data[0] = _v;
       }
 
       /// \brief Set the y value.
       /// \param[in] _v Value for the y component.
-      public: inline void Y(const T &_v)
+      public: void SetY(const T &_v)
       {
         this->data[1] = _v;
       }
 
       /// \brief Set the z value.
       /// \param[in] _v Value for the z component.
-      public: inline void Z(const T &_v)
+      public: void SetZ(const T &_v)
       {
         this->data[2] = _v;
       }
 
       /// \brief Set the w value.
       /// \param[in] _v Value for the w component.
-      public: inline void W(const T &_v)
+      public: void SetW(const T &_v)
       {
         this->data[3] = _v;
       }

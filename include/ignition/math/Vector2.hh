@@ -196,7 +196,25 @@ namespace ignition
       /// \brief Set this vector's components to the maximum of itself and the
       ///        passed in vector
       /// \param[in] _v the maximum clamping vector
+      /// \sa void SetMax(const Vector2<T>)
       public: void Max(const Vector2<T> &_v)
+      {
+        this->SetMax(_v);
+      }
+
+      /// \brief Set this vector's components to the minimum of itself and the
+      ///        passed in vector
+      /// \param[in] _v the minimum clamping vector
+      /// \sa void SetMin(const Vector2<T>)
+      public: void Min(const Vector2<T> &_v)
+      {
+        this->SetMin(_v);
+      }
+
+      /// \brief Set this vector's components to the maximum of itself and the
+      ///        passed in vector
+      /// \param[in] _v the maximum clamping vector
+      public: void SetMax(const Vector2<T> &_v)
       {
         this->data[0] = std::max(_v[0], this->data[0]);
         this->data[1] = std::max(_v[1], this->data[1]);
@@ -205,7 +223,7 @@ namespace ignition
       /// \brief Set this vector's components to the minimum of itself and the
       ///        passed in vector
       /// \param[in] _v the minimum clamping vector
-      public: void Min(const Vector2<T> &_v)
+      public: void SetMin(const Vector2<T> &_v)
       {
         this->data[0] = std::min(_v[0], this->data[0]);
         this->data[1] = std::min(_v[1], this->data[1]);
@@ -524,14 +542,30 @@ namespace ignition
 
       /// \brief Set the x value.
       /// \param[in] _v Value for the x component.
+      /// \sa void SetX(const T &>)
       public: inline void X(const T &_v)
+      {
+        this->SetX(_v);
+      }
+
+      /// \brief Set the y value.
+      /// \param[in] _v Value for the y component.
+      /// \sa void SetY(const T &>)
+      public: inline void Y(const T &_v)
+      {
+        this->SetY(_v);
+      }
+
+      /// \brief Set the x value.
+      /// \param[in] _v Value for the x component.
+      public: void SetX(const T &_v)
       {
         this->data[0] = _v;
       }
 
       /// \brief Set the y value.
       /// \param[in] _v Value for the y component.
-      public: inline void Y(const T &_v)
+      public: void SetY(const T &_v)
       {
         this->data[1] = _v;
       }
