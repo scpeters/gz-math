@@ -336,13 +336,13 @@ namespace ignition
       public: Pose3<T> RotatePositionAboutOrigin(const Quaternion<T> &_q) const
       {
         Pose3<T> a = *this;
-        a.p.X((1.0 - 2.0*_q.Y()*_q.Y() - 2.0*_q.Z()*_q.Z()) * this->p.X()
+        a.p.SetX((1.0 - 2.0*_q.Y()*_q.Y() - 2.0*_q.Z()*_q.Z()) * this->p.X()
                 +(2.0*(_q.X()*_q.Y()+_q.W()*_q.Z())) * this->p.Y()
                 +(2.0*(_q.X()*_q.Z()-_q.W()*_q.Y())) * this->p.Z());
-        a.p.Y((2.0*(_q.X()*_q.Y()-_q.W()*_q.Z())) * this->p.X()
+        a.p.SetY((2.0*(_q.X()*_q.Y()-_q.W()*_q.Z())) * this->p.X()
                 +(1.0 - 2.0*_q.X()*_q.X() - 2.0*_q.Z()*_q.Z()) * this->p.Y()
                 +(2.0*(_q.Y()*_q.Z()+_q.W()*_q.X())) * this->p.Z());
-        a.p.Z((2.0*(_q.X()*_q.Z()+_q.W()*_q.Y())) * this->p.X()
+        a.p.SetZ((2.0*(_q.X()*_q.Z()+_q.W()*_q.Y())) * this->p.X()
                 +(2.0*(_q.Y()*_q.Z()-_q.W()*_q.X())) * this->p.Y()
                 +(1.0 - 2.0*_q.X()*_q.X() - 2.0*_q.Y()*_q.Y()) * this->p.Z());
         return a;

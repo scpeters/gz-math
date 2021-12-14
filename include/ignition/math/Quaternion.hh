@@ -364,15 +364,15 @@ namespace ignition
         T sarg = -2 * (copy.qx*copy.qz - copy.qw * copy.qy);
         if (sarg <= T(-1.0))
         {
-          vec.Y(T(-0.5*IGN_PI));
+          vec.SetY(T(-0.5*IGN_PI));
         }
         else if (sarg >= T(1.0))
         {
-          vec.Y(T(0.5*IGN_PI));
+          vec.SetY(T(0.5*IGN_PI));
         }
         else
         {
-          vec.Y(T(asin(sarg)));
+          vec.SetY(T(asin(sarg)));
         }
 
         // If the pitch angle is PI/2 or -PI/2, we can only compute
@@ -382,25 +382,25 @@ namespace ignition
         // pitch angle is PI/2
         if (std::abs(sarg - 1) < tol)
         {
-          vec.Z(0);
-          vec.X(T(atan2(2 * (copy.qx*copy.qy - copy.qz*copy.qw),
+          vec.SetZ(0);
+          vec.SetX(T(atan2(2 * (copy.qx*copy.qy - copy.qz*copy.qw),
                       squ - sqx + sqy - sqz)));
         }
         // pitch angle is -PI/2
         else if (std::abs(sarg + 1) < tol)
         {
-          vec.Z(0);
-          vec.X(T(atan2(-2 * (copy.qx*copy.qy - copy.qz*copy.qw),
+          vec.SetZ(0);
+          vec.SetX(T(atan2(-2 * (copy.qx*copy.qy - copy.qz*copy.qw),
                        squ - sqx + sqy - sqz)));
         }
         else
         {
           // Roll
-          vec.X(T(atan2(2 * (copy.qy*copy.qz + copy.qw*copy.qx),
+          vec.SetX(T(atan2(2 * (copy.qy*copy.qz + copy.qw*copy.qx),
                       squ - sqx - sqy + sqz)));
 
           // Yaw
-          vec.Z(T(atan2(2 * (copy.qx*copy.qy + copy.qw*copy.qz),
+          vec.SetZ(T(atan2(2 * (copy.qx*copy.qy + copy.qw*copy.qz),
                       squ + sqx - sqy - sqz)));
         }
 

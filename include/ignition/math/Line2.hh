@@ -218,13 +218,13 @@ namespace ignition
             return false;
         }
 
-        _pt.X((_line[0].X() - _line[1].X()) *
+        _pt.SetX((_line[0].X() - _line[1].X()) *
               (this->pts[0].X() * this->pts[1].Y() -
                this->pts[0].Y() * this->pts[1].X()) -
               (this->pts[0].X() - this->pts[1].X()) *
               (_line[0].X() * _line[1].Y() - _line[0].Y() * _line[1].X()));
 
-        _pt.Y((_line[0].Y() - _line[1].Y()) *
+        _pt.SetY((_line[0].Y() - _line[1].Y()) *
               (this->pts[0].X() * this->pts[1].Y() -
                this->pts[0].Y() * this->pts[1].X()) -
               (this->pts[0].Y() - this->pts[1].Y()) *

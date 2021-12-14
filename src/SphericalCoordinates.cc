@@ -266,8 +266,8 @@ ignition::math::Vector3d SphericalCoordinates::SphericalFromLocalPosition(
 {
   ignition::math::Vector3d result =
     this->PositionTransform(_xyz, LOCAL, SPHERICAL);
-  result.X(IGN_RTOD(result.X()));
-  result.Y(IGN_RTOD(result.Y()));
+  result.SetX(IGN_RTOD(result.X()));
+  result.SetY(IGN_RTOD(result.Y()));
   return result;
 }
 
@@ -276,8 +276,8 @@ ignition::math::Vector3d SphericalCoordinates::LocalFromSphericalPosition(
     const ignition::math::Vector3d &_xyz) const
 {
   ignition::math::Vector3d result = _xyz;
-  result.X(IGN_DTOR(result.X()));
-  result.Y(IGN_DTOR(result.Y()));
+  result.SetX(IGN_DTOR(result.X()));
+  result.SetY(IGN_DTOR(result.Y()));
   return this->PositionTransform(result, SPHERICAL, LOCAL);
 }
 
@@ -380,9 +380,9 @@ ignition::math::Vector3d SphericalCoordinates::PositionTransform(
     // East, North, Up (ENU), note no break at end of case
     case LOCAL:
       {
-        tmp.X(-_pos.X() * this->dataPtr->cosHea + _pos.Y() *
+        tmp.SetX(-_pos.X() * this->dataPtr->cosHea + _pos.Y() *
             this->dataPtr->sinHea);
-        tmp.Y(-_pos.X() * this->dataPtr->sinHea - _pos.Y() *
+        tmp.SetY(-_pos.X() * this->dataPtr->sinHea - _pos.Y() *
             this->dataPtr->cosHea);
         tmp = this->dataPtr->origin + this->dataPtr->rotGlobalToECEF * tmp;
         break;
@@ -390,9 +390,9 @@ ignition::math::Vector3d SphericalCoordinates::PositionTransform(
 
     case LOCAL2:
       {
-        tmp.X(_pos.X() * this->dataPtr->cosHea + _pos.Y() *
+        tmp.SetX(_pos.X() * this->dataPtr->cosHea + _pos.Y() *
             this->dataPtr->sinHea);
-        tmp.Y(-_pos.X() * this->dataPtr->sinHea + _pos.Y() *
+        tmp.SetY(-_pos.X() * this->dataPtr->sinHea + _pos.Y() *
             this->dataPtr->cosHea);
         tmp = this->dataPtr->origin + this->dataPtr->rotGlobalToECEF * tmp;
         break;
@@ -406,11 +406,11 @@ ignition::math::Vector3d SphericalCoordinates::PositionTransform(
 
     case SPHERICAL:
       {
-        tmp.X((_pos.Z() + curvature) * cosLat * cosLon);
-        tmp.Y((_pos.Z() + curvature) * cosLat * sinLon);
-        tmp.Z(((this->dataPtr->ellB * this->dataPtr->ellB)/
-              (this->dataPtr->ellA * this->dataPtr->ellA) *
-              curvature + _pos.Z()) * sinLat);
+        tmp.SetX((_pos.Z() + curvature) * cosLat * cosLon);
+        tmp.SetY((_pos.Z() + curvature) * cosLat * sinLon);
+        tmp.SetZ(((this->dataPtr->ellB * this->dataPtr->ellB)/
+                  (this->dataPtr->ellA * this->dataPtr->ellA) *
+                  curvature + _pos.Z()) * sinLat);
         break;
       }
 
@@ -448,11 +448,11 @@ ignition::math::Vector3d SphericalCoordinates::PositionTransform(
           std::pow(sin(lat), 2);
         nCurvature = this->dataPtr->ellA / sqrt(nCurvature);
 
-        tmp.X(lat);
-        tmp.Y(lon);
+        tmp.SetX(lat);
+        tmp.SetY(lon);
 
         // Now calculate Z
-        tmp.Z(p/cos(lat) - nCurvature);
+        tmp.SetZ(p/cos(lat) - nCurvature);
         break;
       }
 
@@ -503,16 +503,16 @@ ignition::math::Vector3d SphericalCoordinates::VelocityTransform(
   {
     // ENU
     case LOCAL:
-      tmp.X(-_vel.X() * this->dataPtr->cosHea + _vel.Y() *
+      tmp.SetX(-_vel.X() * this->dataPtr->cosHea + _vel.Y() *
             this->dataPtr->sinHea);
-      tmp.Y(-_vel.X() * this->dataPtr->sinHea - _vel.Y() *
+      tmp.SetY(-_vel.X() * this->dataPtr->sinHea - _vel.Y() *
             this->dataPtr->cosHea);
       tmp = this->dataPtr->rotGlobalToECEF * tmp;
       break;
     case LOCAL2:
-      tmp.X(_vel.X() * this->dataPtr->cosHea + _vel.Y() *
+      tmp.SetX(_vel.X() * this->dataPtr->cosHea + _vel.Y() *
             this->dataPtr->sinHea);
-      tmp.Y(-_vel.X() * this->dataPtr->sinHea + _vel.Y() *
+      tmp.SetY(-_vel.X() * this->dataPtr->sinHea + _vel.Y() *
             this->dataPtr->cosHea);
       tmp = this->dataPtr->rotGlobalToECEF * tmp;
       break;

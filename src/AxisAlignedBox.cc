@@ -44,8 +44,8 @@ AxisAlignedBox::AxisAlignedBox(double _vec1X, double _vec1Y, double _vec1Z,
   this->dataPtr->min.Set(_vec1X, _vec1Y, _vec1Z);
   this->dataPtr->max.Set(_vec2X, _vec2Y, _vec2Z);
 
-  this->dataPtr->min.Min(math::Vector3d(_vec2X, _vec2Y, _vec2Z));
-  this->dataPtr->max.Max(math::Vector3d(_vec1X, _vec1Y, _vec1Z));
+  this->dataPtr->min.SetMin(math::Vector3d(_vec2X, _vec2Y, _vec2Z));
+  this->dataPtr->max.SetMax(math::Vector3d(_vec1X, _vec1Y, _vec1Z));
 }
 
 //////////////////////////////////////////////////
@@ -53,10 +53,10 @@ AxisAlignedBox::AxisAlignedBox(const Vector3d &_vec1, const Vector3d &_vec2)
 : dataPtr(new AxisAlignedBoxPrivate)
 {
   this->dataPtr->min = _vec1;
-  this->dataPtr->min.Min(_vec2);
+  this->dataPtr->min.SetMin(_vec2);
 
   this->dataPtr->max = _vec2;
-  this->dataPtr->max.Max(_vec1);
+  this->dataPtr->max.SetMax(_vec1);
 }
 
 //////////////////////////////////////////////////
@@ -110,8 +110,8 @@ math::Vector3d AxisAlignedBox::Center() const
 //////////////////////////////////////////////////
 void AxisAlignedBox::Merge(const AxisAlignedBox &_box)
 {
-  this->dataPtr->min.Min(_box.dataPtr->min);
-  this->dataPtr->max.Max(_box.dataPtr->max);
+  this->dataPtr->min.SetMin(_box.dataPtr->min);
+  this->dataPtr->max.SetMax(_box.dataPtr->max);
 }
 
 //////////////////////////////////////////////////
@@ -134,8 +134,8 @@ AxisAlignedBox AxisAlignedBox::operator+(const AxisAlignedBox &_b) const
 //////////////////////////////////////////////////
 const AxisAlignedBox &AxisAlignedBox::operator+=(const AxisAlignedBox &_b)
 {
-  this->dataPtr->min.Min(_b.dataPtr->min);
-  this->dataPtr->max.Max(_b.dataPtr->max);
+  this->dataPtr->min.SetMin(_b.dataPtr->min);
+  this->dataPtr->max.SetMax(_b.dataPtr->max);
   return *this;
 }
 

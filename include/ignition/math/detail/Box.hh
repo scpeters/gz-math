@@ -32,9 +32,9 @@ namespace math
 template<typename T>
 Box<T>::Box(T _length, T _width, T _height)
 {
-  this->size.X(_length);
-  this->size.Y(_width);
-  this->size.Z(_height);
+  this->size.SetX(_length);
+  this->size.SetY(_width);
+  this->size.SetZ(_height);
 }
 
 //////////////////////////////////////////////////
@@ -42,9 +42,9 @@ template<typename T>
 Box<T>::Box(T _length, T _width, T _height,
     const ignition::math::Material &_mat)
 {
-  this->size.X(_length);
-  this->size.Y(_width);
-  this->size.Z(_height);
+  this->size.SetX(_length);
+  this->size.SetY(_width);
+  this->size.SetZ(_height);
   this->material = _mat;
 }
 
@@ -74,9 +74,9 @@ math::Vector3<T> Box<T>::Size() const
 template<typename T>
 void Box<T>::SetSize(T _length, T _width, T _height)
 {
-  this->size.X(_length);
-  this->size.Y(_width);
-  this->size.Z(_height);
+  this->size.SetX(_length);
+  this->size.SetY(_width);
+  this->size.SetZ(_height);
 }
 
 //////////////////////////////////////////////////
