@@ -209,7 +209,7 @@ TEST(Vector2Test, Max)
   EXPECT_DOUBLE_EQ(vec1.Max(), 0.2);
   EXPECT_DOUBLE_EQ(vec3.Max(), 0.4);
 
-  vec1.Max(vec2);
+  vec1.SetMax(vec2);
   EXPECT_EQ(vec1, math::Vector2d(0.3, 0.5));
 
   vec1.Max(vec3);
@@ -226,7 +226,7 @@ TEST(Vector2Test, Min)
   EXPECT_DOUBLE_EQ(vec1.Min(), 0.3);
   EXPECT_DOUBLE_EQ(vec3.Min(), 0.05);
 
-  vec1.Min(vec2);
+  vec1.SetMin(vec2);
   EXPECT_EQ(vec1, math::Vector2d(0.1, 0.2));
 
   vec1.Min(vec3);
@@ -465,3 +465,24 @@ TEST(Vector2Test, NaN)
   EXPECT_TRUE(nanVecF.IsFinite());
 }
 
+/////////////////////////////////////////////////
+TEST(Vector2Test, SetXY)
+{
+  math::Vector2d v;
+
+  // default values
+  EXPECT_DOUBLE_EQ(0.0, v.X());
+  EXPECT_DOUBLE_EQ(0.0, v.Y());
+
+  // Set new values
+  v.SetX(1.234);
+  v.SetY(-0.56);
+  EXPECT_DOUBLE_EQ(1.234, v.X());
+  EXPECT_DOUBLE_EQ(-0.56, v.Y());
+
+  // test functions that will be deprecated
+  v.SetX(0.0);
+  v.SetY(0.0);
+  EXPECT_DOUBLE_EQ(0.0, v.X());
+  EXPECT_DOUBLE_EQ(0.0, v.Y());
+}
