@@ -63,6 +63,8 @@ namespace ignition
       public: T DistToLine(const Vector3<T> &_pt1, const Vector3 &_pt2);
       public: void Max(const Vector3<T> &_v);
       public: void Min(const Vector3<T> &_v);
+      public: void SetMax(const Vector3<T> &_v);
+      public: void SetMin(const Vector3<T> &_v);
       public: T Max() const;
       public: T Min() const;
       public: Vector3 operator+(const Vector3<T> &_v) const;
@@ -86,6 +88,9 @@ namespace ignition
       public: inline void X(const T &_v);
       public: inline void Y(const T &_v);
       public: inline void Z(const T &_v);
+      public: inline void SetX(const T &_v);
+      public: inline void SetY(const T &_v);
+      public: inline void SetZ(const T &_v);
       public: bool operator<(const Vector3<T> &_pt) const;
     };
 

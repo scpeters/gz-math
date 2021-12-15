@@ -124,7 +124,7 @@ class TestVector2(unittest.TestCase):
         self.assertAlmostEqual(vec1.max(), 0.2)
         self.assertAlmostEqual(vec3.max(), 0.4)
 
-        vec1.max(vec2)
+        vec1.set_max(vec2)
         self.assertAlmostEqual(vec1, Vector2d(0.3, 0.5))
 
         vec1.max(vec3)
@@ -138,7 +138,7 @@ class TestVector2(unittest.TestCase):
         self.assertAlmostEqual(vec1.min(), 0.3)
         self.assertAlmostEqual(vec3.min(), 0.05)
 
-        vec1.min(vec2)
+        vec1.set_min(vec2)
         self.assertAlmostEqual(vec1, Vector2d(0.1, 0.2))
 
         vec1.min(vec3)
@@ -276,7 +276,7 @@ class TestVector2(unittest.TestCase):
         v.set(0.1, 0.5)
         self.assertAlmostEqual(v * v, Vector2d(0.01, 0.25))
 
-    def test_lenght(self):
+    def test_length(self):
         # Zero vector
         self.assertAlmostEqual(Vector2d.ZERO.length(), 0.0)
         self.assertAlmostEqual(Vector2d.ZERO.squared_length(), 0.0)
@@ -314,6 +314,25 @@ class TestVector2(unittest.TestCase):
         nanVecF.correct()
         self.assertEqual(Vector2f.ZERO, nanVecF)
         self.assertTrue(nanVecF.is_finite())
+
+    def test_set_xy(self):
+        v = Vector2d()
+
+        # default values
+        self.assertEqual(0.0, v.x())
+        self.assertEqual(0.0, v.y())
+
+        # Set new values
+        v.set_x(1.234)
+        v.xet_y(-0.56)
+        self.assertEqual(1.234, v.x())
+        self.assertEqual(-0.56, v.y())
+
+        # test functions that will be deprecated
+        v.set_x(0.0)
+        v.xet_y(0.0)
+        self.assertEqual(0.0, v.x())
+        self.assertEqual(0.0, v.y())
 
 if __name__ == '__main__':
     unittest.main()

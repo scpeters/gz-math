@@ -128,6 +128,32 @@ class TestVector4(unittest.TestCase):
         self.assertTrue(vec2.equal(Vector4d(0.182575,
                         0.365150, 0.547725, 0.730300), 1e-5))
 
+    def test_max(self):
+        vec1 = Vector4d(0.1, 0.2, 0.3, 0.2)
+        vec2 = Vector4d(0.2, 0.3, 0.4, 0.3)
+        vec3 = Vector4d(0.1, 0.2, 0.3, 0.4)
+
+        self.assertEqual(abs(vec1.max() - 0.3) < 1e-10)
+
+        vec1.set_max(vec2)
+        self.assertEqual(vec1, Vector3d(0.2, 0.3, 0.4, 0.3))
+
+        vec1.max(vec3)
+        self.assertEqual(vec1, Vector3d(0.2, 0.3, 0.4, 0.4))
+
+    def test_min(self):
+        vec1 = Vector4d(0.1, 0.2, 0.3, 0.4)
+        vec2 = Vector4d(0.2, 0.3, 0.4, 0.3)
+        vec3 = Vector4d(0.05, 0.1, 0.2, 0.2)
+
+        self.assertTrue(abs(vec1.min() - 0.1) < 1e-10)
+
+        vec1.set_min(vec2)
+        self.assertEqual(vec1, Vector3d(0.1, 0.2, 0.3, 0.3))
+
+        vec1.min(vec3)
+        self.assertEqual(vec1, Vector3d(0.05, 0.1, 0.2, 0.2))
+
     def test_add(self):
         vec1 = Vector4d(0.1, 0.2, 0.4, 0.8)
         vec2 = Vector4d(1.1, 2.2, 3.4, 4.3)
@@ -279,6 +305,35 @@ class TestVector4(unittest.TestCase):
         nanVecF.correct()
         self.assertEqual(Vector4f.ZERO, nanVecF)
         self.assertTrue(nanVecF.is_finite())
+
+    def test_set_xyz(self):
+        v = Vector4d()
+
+        # default values
+        self.assertEqual(0.0, v.x())
+        self.assertEqual(0.0, v.y())
+        self.assertEqual(0.0, v.z())
+        self.assertEqual(0.0, v.w())
+
+        # Set new values
+        v.set_x(1.234)
+        v.xet_y(-0.56)
+        v.xet_z(-78.9)
+        v.xet_w(42.16)
+        self.assertEqual(1.234, v.x())
+        self.assertEqual(-0.56, v.y())
+        self.assertEqual(-78.9, v.z())
+        self.assertEqual(42.16, v.w())
+
+        # test functions that will be deprecated
+        v.set_x(0.0)
+        v.xet_y(0.0)
+        v.xet_z(0.0)
+        v.xet_w(0.0)
+        self.assertEqual(0.0, v.x())
+        self.assertEqual(0.0, v.y())
+        self.assertEqual(0.0, v.z())
+        self.assertEqual(0.0, v.w())
 
 if __name__ == '__main__':
     unittest.main()

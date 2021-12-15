@@ -202,7 +202,7 @@ class TestVector3(unittest.TestCase):
 
         self.assertTrue(abs(vec1.max() - 0.3) < 1e-10)
 
-        vec1.max(vec2)
+        vec1.set_max(vec2)
         self.assertEqual(vec1, Vector3d(0.2, 0.3, 0.4))
 
         vec1.max(vec3)
@@ -215,7 +215,7 @@ class TestVector3(unittest.TestCase):
 
         self.assertTrue(abs(vec1.min() - 0.1) < 1e-10)
 
-        vec1.min(vec2)
+        vec1.set_min(vec2)
         self.assertEqual(vec1, Vector3d(0.1, 0.2, 0.3))
 
         vec1.min(vec3)
@@ -371,6 +371,30 @@ class TestVector3(unittest.TestCase):
         nanVecF.correct()
         self.assertEqual(Vector3f.ZERO, nanVecF)
         self.assertTrue(nanVecF.is_finite())
+
+    def test_set_xyz(self):
+        v = Vector3d()
+
+        # default values
+        self.assertEqual(0.0, v.x())
+        self.assertEqual(0.0, v.y())
+        self.assertEqual(0.0, v.z())
+
+        # Set new values
+        v.set_x(1.234)
+        v.xet_y(-0.56)
+        v.xet_z(-78.9)
+        self.assertEqual(1.234, v.x())
+        self.assertEqual(-0.56, v.y())
+        self.assertEqual(-78.9, v.z())
+
+        # test functions that will be deprecated
+        v.set_x(0.0)
+        v.xet_y(0.0)
+        v.xet_z(0.0)
+        self.assertEqual(0.0, v.x())
+        self.assertEqual(0.0, v.y())
+        self.assertEqual(0.0, v.z())
 
 if __name__ == '__main__':
     unittest.main()

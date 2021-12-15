@@ -54,6 +54,8 @@ namespace ignition
       public: inline void Correct();
       public: void Max(const Vector2<T> &_v);
       public: void Min(const Vector2<T> &_v);
+      public: void SetMax(const Vector2<T> &_v);
+      public: void SetMin(const Vector2<T> &_v);
       public: T Max() const;
       public: T Min() const;
       public: Vector2 operator+(const Vector2 &_v) const;
@@ -71,6 +73,8 @@ namespace ignition
       public: inline T Y() const;
       public: inline void X(const T &_v);
       public: inline void Y(const T &_v);
+      public: inline void SetX(const T &_v);
+      public: inline void SetY(const T &_v);
       public: bool Equal(const Vector2 &_v, const T &_tol) const;
     };
 

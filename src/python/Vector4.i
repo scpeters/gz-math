@@ -47,6 +47,12 @@ namespace ignition
       public: T SquaredLength() const;
       public: void Normalize();
       public: inline void Set(T _x = 0, T _y = 0, T _z = 0, T _w = 0);
+      public: void Max(const Vector4<T> &_v);
+      public: void Min(const Vector4<T> &_v);
+      public: void SetMax(const Vector4<T> &_v);
+      public: void SetMin(const Vector4<T> &_v);
+      public: T Max() const;
+      public: T Min() const;
       public: Vector4 operator+(const Vector4<T> &_v) const;
       public: inline Vector4<T> operator+(const T _s) const;
       public: inline Vector4 operator-() const;
@@ -68,6 +74,10 @@ namespace ignition
       public: inline void Y(const T &_v);
       public: inline void Z(const T &_v);
       public: inline void W(const T &_v);
+      public: inline void SetX(const T &_v);
+      public: inline void SetY(const T &_v);
+      public: inline void SetZ(const T &_v);
+      public: inline void SetW(const T &_v);
     };
 
     %template(Vector4i) Vector4<int>;
