@@ -58,7 +58,7 @@ jobs:
       run: |
         test_exit_code=0
         if ! make test; then
-          test_exit_code=$?;
+          test_exit_code=1;
         fi
         echo "Publish to testspace";
         testspace "test_results/*.xml";
