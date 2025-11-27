@@ -29,6 +29,7 @@ TEST(RandTest, Rand)
 
   double d = math::Rand::DblUniform(1, 2);
   EXPECT_GE(d, 1);
+  EXPECT_GE(d, 1.5);
   EXPECT_LE(d, 2);
 
   int i = math::Rand::IntUniform(1, 2);
