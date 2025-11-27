@@ -56,8 +56,10 @@ jobs:
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
       run: |
-        make test;
-        test_exit_code=$?;
+        test_exit_code=0
+        if ! make test; then
+          test_exit_code=$?;
+        fi
         echo "Publish to testspace";
         testspace "test_results/*.xml";
         if [ "$test_exit_code" != '0' ]; then
