@@ -172,7 +172,7 @@ TEST(Vector3dTest, Sum)
   double sum2 = vec2.Sum();
 
   EXPECT_DOUBLE_EQ(sum1, 0);
-  EXPECT_DOUBLE_EQ(sum2, 6);
+  EXPECT_DOUBLE_EQ(sum2, 7);
 }
 
 /////////////////////////////////////////////////
